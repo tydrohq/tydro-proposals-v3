@@ -1,30 +1,30 @@
-name: Tenderly Ink Tests
+  name: Tenderly Ink Tests
 
-concurrency:
-  group: tenderly-ink-${{ github.head_ref || github.run_id }}
-  cancel-in-progress: true
+  concurrency:
+    group: tenderly-ink-${{ github.head_ref || github.run_id }}
+    cancel-in-progress: true
 
-on:
-  workflow_dispatch:
-  pull_request:
-    paths:
-      - 'src/**/*InkWhitelabel*/**'
-      - 'src/**/*InkWhitelabel*.sol'
-      - 'foundry.toml'
-      - 'remappings.txt'
-      - '.github/workflows/tenderly-ink.yml'
+  on:
+    workflow_dispatch:
+    pull_request:
+      paths:
+        - 'src/**/*InkWhitelabel*/**'
+        - 'src/**/*InkWhitelabel*.sol'
+        - 'foundry.toml'
+        - 'remappings.txt'
+        - '.github/workflows/tenderly-ink.yml'
 
-permissions:
-  contents: read
+  permissions:
+    contents: read
 
-jobs:
-  tenderly-ink:
-    name: Ink proposal tests on Tenderly VNet
-    runs-on: ubuntu-latest
+  jobs:
+    tenderly-ink:
+      name: Ink proposal tests on Tenderly VNet
+      runs-on: ubuntu-latest
 
-    if: github.event_name != 'pull_request' || github.event.pull_request.head.repo.full_name == github.repository
+      if: ${{ github.event_name != 'pull_request' || github.event.pull_request.head.repo.full_name == github.repository }}
 
-    steps:
+      steps:
         - uses: actions/checkout@v4
           with:
             submodules: recursive
