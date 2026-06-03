@@ -1,0 +1,59 @@
+name: Tenderly Ink Tests
+
+concurrency:
+  group: tenderly-ink-${{ github.head_ref || github.run_id }}
+  cancel-in-progress: true
+
+on:
+  workflow_dispatch:
+  pull_request:
+    paths:
+      - "src/**/*InkWhitelabel*/**"
+      - "src/**/*InkWhitelabel*.sol"
+      - "foundry.toml"
+      - "remappings.txt"
+      - ".github/workflows/tenderly-ink.yml"
+
+permissions:
+  contents: read
+
+jobs:
+  tenderly-ink:
+    name: Ink proposal tests on Tenderly VNet
+    runs-on: ubuntu-latest
+
+    if: ${{ github.event_name != 'pull_request' || github.event.pull_request.head.repo.full_name == github.repository }}
+
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          submodules: recursive
+
+      - name: Run Foundry setup
+        uses: bgd-labs/github-workflows/.github/actions/foundry-setup@main
+
+      - name: Create Tenderly Ink VNet
+        uses: Tenderly/vnet-github-action@v1.0.17
+        with:
+          mode: CI
+          access_key: ${{ secrets.TENDERLY_ACCESS_KEY }}
+          project_name: project
+          account_name: ink-foundation
+          testnet_name: tydro-ink-${{ github.run_id }}
+          network_id: |
+            57073
+          chain_id_prefix: ""
+          block_number: "0x2b836ca"
+          state_sync: false
+          public_explorer: false
+          verification_visibility: bytecode
+          push_on_complete: false
+
+      - name: Run Ink proposal tests
+        run: |
+          export RPC_INK="$TENDERLY_PUBLIC_RPC_URL_57073"
+          test -n "$RPC_INK"
+
+          FOUNDRY_PROFILE=test forge test \
+            --match-path 'src/**/*InkWhitelabel*.t.sol' \
+            -vvv
