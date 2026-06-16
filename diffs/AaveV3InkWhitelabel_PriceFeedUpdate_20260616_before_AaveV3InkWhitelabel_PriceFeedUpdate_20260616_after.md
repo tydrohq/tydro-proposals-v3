@@ -1,0 +1,41 @@
+## Event logs
+
+#### 0x4758213271BFdC72224A7a8742dC865fC97756e1 (AaveV3InkWhitelabel.ORACLE)
+
+| index | event |
+| --- | --- |
+| 0 | AssetSourceUpdated(asset: 0x9f0a74A92287E323Eb95c1cd9eCdBEb0e397cAe4 (symbol: wrsETH), source: 0x771a1668f973f2485D32580aB53F5C4934e81531) |
+
+#### 0x1dF462e2712496373A347f8ad10802a5E95f053D (AaveV3InkWhitelabel.ACL_ADMIN, GovernanceV3InkWhitelabel.PERMISSIONED_PAYLOADS_CONTROLLER_EXECUTOR)
+
+| index | event |
+| --- | --- |
+| 1 | ExecutedAction(target: 0x5615dEB798BB3E4dFa0139dFa1b3D433Cc23b72f, value: 0, signature: execute(), data: 0x, executionTime: 1781630010, withDelegatecall: true, resultData: 0x) |
+
+#### 0x1dE9CB9420Dd1f2cCeFFf9393E126b800D413b7A (GovernanceV3InkWhitelabel.PERMISSIONED_PAYLOADS_CONTROLLER)
+
+| index | event |
+| --- | --- |
+| 2 | PayloadExecuted(payloadId: 26) |
+
+## Raw storage changes
+
+### 0x1de9cb9420dd1f2ccefff9393e126b800d413b7a (GovernanceV3InkWhitelabel.PERMISSIONED_PAYLOADS_CONTROLLER)
+
+| slot | previous value | new value |
+| --- | --- | --- |
+| 0x68fc0e82119a780903c8e97d959a36d433d1e401ad7b7a461ff2087e524d54a8 | 0x006a318439000000000002000000000000000000000000000000000000000000 | 0x006a318439000000000003000000000000000000000000000000000000000000 |
+| 0x68fc0e82119a780903c8e97d959a36d433d1e401ad7b7a461ff2087e524d54a9 | 0x000000000000000000093a800000000000006a5fa8ba00000000000000000000 | 0x000000000000000000093a800000000000006a5fa8ba0000000000006a31843a |
+
+### 0x4758213271bfdc72224a7a8742dc865fc97756e1 (AaveV3InkWhitelabel.ORACLE)
+
+| slot | previous value | new value |
+| --- | --- | --- |
+| 0x1a6e1b289f404787ae22d2707a86057da6028484caa1a0b1e041a3ca4f19044e | 0x000000000000000000000000771a1668f973f2485d32580ab53f5c4934e81531 | 0x000000000000000000000000771a1668f973f2485d32580ab53f5c4934e81531 |
+
+
+## Raw diff
+
+```json
+{}
+```
