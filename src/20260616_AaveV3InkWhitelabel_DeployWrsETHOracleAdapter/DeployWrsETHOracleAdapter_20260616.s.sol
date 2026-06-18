@@ -15,10 +15,6 @@ library InkWrsETHOracleAdapterCode {
     uint48 public constant WrsETH_ETH_SNAPSHOT_TIMESTAMP = 1780956747;
     uint16 public constant WrsETH_MAX_YEARLY_RATIO_GROWTH_PERCENT = 9_83;
 
-    function wrsETHAdapterAddress() internal pure returns (address) {
-        return GovV3Helpers.predictDeterministicAddress(wrsETHAdapterCode());
-    }
-
     function wrsETHAdapterCode() internal pure returns (bytes memory) {
         return abi.encodePacked(
             type(CLRatePriceCapAdapter).creationCode,
