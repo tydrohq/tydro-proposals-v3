@@ -15,7 +15,7 @@ contract AaveV3InkWhitelabel_PriceFeedUpdate_20260616_Test is ProtocolV3TestBase
   AaveV3InkWhitelabel_PriceFeedUpdate_20260616 internal proposal;
 
   function setUp() public {
-    vm.createSelectFork(vm.rpcUrl('ink'), 48131599);
+    vm.createSelectFork(vm.rpcUrl('ink'), 48318899);
     proposal = new AaveV3InkWhitelabel_PriceFeedUpdate_20260616();
   }
 

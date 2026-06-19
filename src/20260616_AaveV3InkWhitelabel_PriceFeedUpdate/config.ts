@@ -7,5 +7,5 @@ export const config: ConfigFile = {
     date: '20260616',
     author: 'rohan',
   },
-  poolOptions: {AaveV3InkWhitelabel: {configs: {}, cache: {blockNumber: 48131599}}},
+  poolOptions: {AaveV3InkWhitelabel: {configs: {}, cache: {blockNumber: 48318899}}},
 };
