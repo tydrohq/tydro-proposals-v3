@@ -40,6 +40,9 @@ jobs:
       - name: Run Forge tests
         id: test
         uses: bgd-labs/github-workflows/.github/actions/foundry-test@main
+        env:
+          # action-rpc-env does not provide a reliable Ink endpoint for whitelabel proposal tests.
+          RPC_INK: https://rpc-gel.inkonchain.com
         with:
           MODE: "CHANGED"
           FOUNDRY_PROFILE: "test"
