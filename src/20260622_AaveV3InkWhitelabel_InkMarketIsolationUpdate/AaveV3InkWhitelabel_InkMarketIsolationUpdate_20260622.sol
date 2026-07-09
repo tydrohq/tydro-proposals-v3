@@ -204,7 +204,7 @@ contract AaveV3InkWhitelabel_InkMarketIsolationUpdate_20260622 is AaveV3PayloadI
     eModeCreations[0] = IAaveV3ConfigEngine.EModeCategoryCreation({
       ltv: 90_00,
       liqThreshold: 92_00,
-      liqBonus: 104_00,
+      liqBonus: 4_00,
       label: 'sUSDe_USDe__USDT0_USDG',
       collaterals: collateralAssets_SUSDe_USDe__USDT0_USDG,
       borrowables: borrowableAssets_SUSDe_USDe__USDT0_USDG

@@ -150,7 +150,7 @@ export const config: ConfigFile = {
           {
             ltv: '90',
             liqThreshold: '92',
-            liqBonus: '104',
+            liqBonus: '4',
             label: 'sUSDe_USDe__USDT0_USDG',
             collateralAssets: ['sUSDe', 'USDe'],
             borrowableAssets: ['USDT', 'USDG'],
