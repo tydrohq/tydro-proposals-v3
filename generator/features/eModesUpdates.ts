@@ -3,6 +3,7 @@ import {eModesSelect} from '../prompts';
 import {EModeCategoryUpdate} from './types';
 import {stringOrKeepCurrent} from '../prompts/stringPrompt';
 import {translateJsPercentToSol} from '../prompts/percentPrompt';
+import {translateJsBoolToSol} from '../prompts/boolPrompt';
 import {fetchEmodeCategoryData} from './eModesCreation';
 
 async function fetchEmodeCategoryUpdate<T extends boolean>(
@@ -58,7 +59,8 @@ export const eModeUpdates: FeatureModule<EmodeUpdates> = {
                ltv: ${translateJsPercentToSol(cfg.ltv)},
                liqThreshold: ${translateJsPercentToSol(cfg.liqThreshold)},
                liqBonus: ${translateJsPercentToSol(cfg.liqBonus)},
-               label: ${stringOrKeepCurrent(cfg.label)}
+               label: ${stringOrKeepCurrent(cfg.label)},
+               isolated: ${translateJsBoolToSol(cfg.isolated)}
              });`,
             )
             .join('\n')}

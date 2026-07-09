@@ -27,8 +27,8 @@ contract AaveV3InkWhitelabel_InkMarketIsolationUpdate_20260622_Test is ProtocolV
       'AaveV3InkWhitelabel_InkMarketIsolationUpdate_20260622',
       AaveV3InkWhitelabel.POOL,
       address(proposal),
-      true,
-      true
+      false,
+      false
     );
   }
 }
