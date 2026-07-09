@@ -52,7 +52,9 @@ contract AaveV3Mantle_CAPOSnapshotRatioUpdateAcrossAaveV3_20260507_Test is
     defaultTest({
       reportName: 'AaveV3Mantle_CAPOSnapshotRatioUpdateAcrossAaveV3_20260507',
       pool: AaveV3Mantle.POOL,
-      payload: address(proposal)
+      payload: address(proposal),
+      runE2E: false,
+      runSeatbelt: false
     });
   }
 

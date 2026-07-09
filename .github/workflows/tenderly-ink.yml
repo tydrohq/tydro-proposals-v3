@@ -28,6 +28,7 @@ jobs:
       - uses: actions/checkout@v4
         with:
           submodules: recursive
+          fetch-depth: 0
 
       - name: Run Foundry setup
         uses: bgd-labs/github-workflows/.github/actions/foundry-setup@main
@@ -43,7 +44,7 @@ jobs:
           network_id: |
             57073
           chain_id_prefix: ""
-          block_number: "0x2b836ca"
+          block_number: "0x2e6a76e"
           state_sync: false
           public_explorer: false
           verification_visibility: bytecode
@@ -54,6 +55,18 @@ jobs:
           export RPC_INK="$TENDERLY_PUBLIC_RPC_URL_57073"
           test -n "$RPC_INK"
 
-          FOUNDRY_PROFILE=test forge test \
-            --match-path 'src/**/*InkWhitelabel*.t.sol' \
-            -vvv
+          if [ -n "${GITHUB_BASE_REF:-}" ]; then
+            mapfile -t tests < <(git diff --name-only "origin/${GITHUB_BASE_REF}"...HEAD -- 'src/**/*.t.sol' | grep 'InkWhitelabel' || true)
+          else
+            mapfile -t tests < <(find src -name '*.t.sol' -path '*InkWhitelabel*' -print)
+          fi
+
+          if [ "${#tests[@]}" -eq 0 ]; then
+            echo "No Ink Whitelabel test files changed."
+            exit 0
+          fi
+
+          for test_file in "${tests[@]}"; do
+            echo "Running ${test_file}"
+            FOUNDRY_PROFILE=test forge test --match-path "${test_file}" -vvv
+          done

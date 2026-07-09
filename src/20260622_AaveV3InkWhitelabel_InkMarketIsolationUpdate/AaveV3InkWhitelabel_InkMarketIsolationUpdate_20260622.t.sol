@@ -15,7 +15,7 @@ contract AaveV3InkWhitelabel_InkMarketIsolationUpdate_20260622_Test is ProtocolV
   AaveV3InkWhitelabel_InkMarketIsolationUpdate_20260622 internal proposal;
 
   function setUp() public {
-    vm.createSelectFork(vm.rpcUrl('ink'), 48658329);
+    vm.createSelectFork(vm.rpcUrl('ink'), 48670574);
     proposal = new AaveV3InkWhitelabel_InkMarketIsolationUpdate_20260622();
   }
 
