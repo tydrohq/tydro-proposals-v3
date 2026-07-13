@@ -140,10 +140,10 @@ contract AaveV3InkWhitelabel_InkMarketIsolationUpdate_20260622 is AaveV3PayloadI
     returns (IAaveV3ConfigEngine.EModeCategoryUpdate[] memory)
   {
     IAaveV3ConfigEngine.EModeCategoryUpdate[]
-      memory eModeUpdates = new IAaveV3ConfigEngine.EModeCategoryUpdate[](2);
+      memory eModeUpdates = new IAaveV3ConfigEngine.EModeCategoryUpdate[](4);
 
     eModeUpdates[0] = IAaveV3ConfigEngine.EModeCategoryUpdate({
-      eModeCategory: 2,
+      eModeCategory: 1,
       ltv: EngineFlags.KEEP_CURRENT,
       liqThreshold: EngineFlags.KEEP_CURRENT,
       liqBonus: EngineFlags.KEEP_CURRENT,
@@ -151,7 +151,23 @@ contract AaveV3InkWhitelabel_InkMarketIsolationUpdate_20260622 is AaveV3PayloadI
       isolated: EngineFlags.ENABLED
     });
     eModeUpdates[1] = IAaveV3ConfigEngine.EModeCategoryUpdate({
+      eModeCategory: 2,
+      ltv: EngineFlags.KEEP_CURRENT,
+      liqThreshold: EngineFlags.KEEP_CURRENT,
+      liqBonus: EngineFlags.KEEP_CURRENT,
+      label: EngineFlags.KEEP_CURRENT_STRING,
+      isolated: EngineFlags.ENABLED
+    });
+    eModeUpdates[2] = IAaveV3ConfigEngine.EModeCategoryUpdate({
       eModeCategory: 3,
+      ltv: EngineFlags.KEEP_CURRENT,
+      liqThreshold: EngineFlags.KEEP_CURRENT,
+      liqBonus: EngineFlags.KEEP_CURRENT,
+      label: EngineFlags.KEEP_CURRENT_STRING,
+      isolated: EngineFlags.ENABLED
+    });
+    eModeUpdates[3] = IAaveV3ConfigEngine.EModeCategoryUpdate({
+      eModeCategory: 4,
       ltv: EngineFlags.KEEP_CURRENT,
       liqThreshold: EngineFlags.KEEP_CURRENT,
       liqBonus: EngineFlags.KEEP_CURRENT,
@@ -216,7 +232,7 @@ contract AaveV3InkWhitelabel_InkMarketIsolationUpdate_20260622 is AaveV3PayloadI
       liqThreshold: 92_00,
       liqBonus: 4_00,
       label: 'sUSDe_USDe__USDT0_USDG',
-      isolated: false,
+      isolated: true,
       collaterals: collateralAssets_SUSDe_USDe__USDT0_USDG,
       borrowables: borrowableAssets_SUSDe_USDe__USDT0_USDG
     });

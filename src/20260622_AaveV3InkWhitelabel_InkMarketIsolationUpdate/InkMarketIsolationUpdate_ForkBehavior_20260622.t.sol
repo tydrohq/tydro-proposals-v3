@@ -45,6 +45,8 @@ interface IPoolDataLike {
   function getEModeCategoryBorrowableBitmap(uint8 id) external view returns (uint128);
 
   function getEModeCategoryLtvzeroBitmap(uint8 id) external view returns (uint128);
+
+  function getIsEModeCategoryIsolated(uint8 id) external view returns (bool);
 }
 
 contract InkMarketIsolationUpdate_ForkBehavior_20260622_Test is Test {
@@ -173,6 +175,34 @@ contract InkMarketIsolationUpdate_ForkBehavior_20260622_Test is Test {
     _reportBorrow('synthetic syrup eMode4 -> borrow USDC', syrupUser, USDC, 1e6);
   }
 
+  function test_KbtcCannotBorrowThroughIsolatedEModes() public {
+    _assertKbtcRouteBlocked(1, WETH, 0.01 ether);
+    _assertKbtcRouteBlocked(4, USDT0, 1e6);
+    _assertKbtcRouteBlocked(5, USDT0, 1e6);
+    _assertKbtcRouteBlocked(5, USDG, 1e6);
+  }
+
+  function test_AllActiveEModesAreIsolated() public view {
+    for (uint8 category = 1; category <= 5; category++) {
+      assertTrue(POOL_DATA.getIsEModeCategoryIsolated(category), 'eMode is not isolated');
+    }
+  }
+
+  function test_IntendedIsolatedEModeRoutesRemainOpen() public {
+    address lrtUser = makeAddr('asserted-lrt');
+    _supplyAndSetEmode(lrtUser, weETH, 10 ether, 1);
+    assertTrue(_probeBorrow(lrtUser, WETH, 0.1 ether), 'LRT eMode cannot borrow WETH');
+
+    address syrupUser = makeAddr('asserted-syrup');
+    _supplyAndSetEmode(syrupUser, syrupUSDT, 10_000e6, 4);
+    assertTrue(_probeBorrow(syrupUser, USDT0, 1e6), 'syrup eMode cannot borrow USDT0');
+
+    address stableUser = makeAddr('asserted-stable');
+    _supplyAndSetEmode(stableUser, sUSDe, 10_000 ether, 5);
+    assertTrue(_probeBorrow(stableUser, USDT0, 1e6), 'stable eMode cannot borrow USDT0');
+    assertTrue(_probeBorrow(stableUser, USDG, 1e6), 'stable eMode cannot borrow USDG');
+  }
+
   function test_CurrentLegacyEModeDistributionAfterPayload() public {
     address[] memory users = _currentLegacyUsers();
     uint256 usdcSuccess;
@@ -219,6 +249,19 @@ contract InkMarketIsolationUpdate_ForkBehavior_20260622_Test is Test {
       abi.encodeWithSignature('setUserUseReserveAsCollateral(address,bool)', asset, true)
     );
     collateralSet;
+  }
+
+  function _assertKbtcRouteBlocked(uint8 eMode, address debtAsset, uint256 amount) internal {
+    address user = makeAddr(
+      string.concat('blocked-kbtc-', vm.toString(eMode), '-', vm.toString(debtAsset))
+    );
+    _supplyAndSetEmode(user, kBTC, 1e8, eMode);
+
+    (, , uint256 availableBorrowsBase, , uint256 ltv, ) = POOL.getUserAccountData(user);
+    assertEq(POOL.getUserEMode(user), eMode, 'unexpected eMode');
+    assertEq(ltv, 0, 'kBTC retained borrowing power');
+    assertEq(availableBorrowsBase, 0, 'kBTC has available borrow capacity');
+    assertFalse(_probeBorrow(user, debtAsset, amount), 'kBTC cross-eMode borrow succeeded');
   }
 
   function _supply(address user, address asset, uint256 amount) internal {

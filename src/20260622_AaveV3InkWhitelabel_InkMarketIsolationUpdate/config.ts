@@ -71,6 +71,14 @@ export const config: ConfigFile = {
         ],
         EMODES_UPDATES: [
           {
+            eModeCategory: '1',
+            ltv: '',
+            liqThreshold: '',
+            liqBonus: '',
+            label: '',
+            isolated: 'ENABLED',
+          },
+          {
             eModeCategory: '2',
             ltv: '',
             liqThreshold: '',
@@ -80,6 +88,14 @@ export const config: ConfigFile = {
           },
           {
             eModeCategory: '3',
+            ltv: '',
+            liqThreshold: '',
+            liqBonus: '',
+            label: '',
+            isolated: 'ENABLED',
+          },
+          {
+            eModeCategory: '4',
             ltv: '',
             liqThreshold: '',
             liqBonus: '',
@@ -116,7 +132,7 @@ export const config: ConfigFile = {
             liqThreshold: '92',
             liqBonus: '4',
             label: 'sUSDe_USDe__USDT0_USDG',
-            isolated: 'DISABLED',
+            isolated: 'ENABLED',
             collateralAssets: ['sUSDe', 'USDe'],
             borrowableAssets: ['USDT', 'USDG'],
           },
