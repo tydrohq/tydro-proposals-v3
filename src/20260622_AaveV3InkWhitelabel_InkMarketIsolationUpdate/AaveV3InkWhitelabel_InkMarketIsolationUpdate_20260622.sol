@@ -22,7 +22,7 @@ contract AaveV3InkWhitelabel_InkMarketIsolationUpdate_20260622 is AaveV3PayloadI
     rateStrategies[0] = IAaveV3ConfigEngine.RateStrategyUpdate({
       asset: AaveV3InkWhitelabelAssets.USDC_UNDERLYING,
       params: IAaveV3ConfigEngine.InterestRateInputData({
-        optimalUsageRatio: 90_00,
+        optimalUsageRatio: 95_00,
         baseVariableBorrowRate: 6_50,
         variableRateSlope1: 0,
         variableRateSlope2: 0

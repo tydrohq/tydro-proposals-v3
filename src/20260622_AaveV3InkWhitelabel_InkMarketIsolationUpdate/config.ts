@@ -16,7 +16,7 @@ export const config: ConfigFile = {
           {
             asset: 'USDC',
             params: {
-              optimalUtilizationRate: '90',
+              optimalUtilizationRate: '95',
               baseVariableBorrowRate: '6.5',
               variableRateSlope1: '0',
               variableRateSlope2: '0',
