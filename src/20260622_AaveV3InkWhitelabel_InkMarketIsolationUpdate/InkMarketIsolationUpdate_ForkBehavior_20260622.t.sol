@@ -173,6 +173,13 @@ contract InkMarketIsolationUpdate_ForkBehavior_20260622_Test is Test {
     _logUser('synthetic syrupUSDT eMode 4', syrupUser);
     _reportBorrow('synthetic syrup eMode4 -> borrow USDT0', syrupUser, USDT0, 1e6);
     _reportBorrow('synthetic syrup eMode4 -> borrow USDC', syrupUser, USDC, 1e6);
+
+    address solvBtcUser = makeAddr('synthetic-solvbtc');
+    _supplyAndSetEmode(solvBtcUser, SolvBTC, 1 ether, 6);
+    _logUser('synthetic SolvBTC eMode 6', solvBtcUser);
+    _reportBorrow('synthetic SolvBTC eMode6 -> borrow GHO', solvBtcUser, GHO, 1 ether);
+    _reportBorrow('synthetic SolvBTC eMode6 -> borrow USDC', solvBtcUser, USDC, 1e6);
+    _reportBorrow('synthetic SolvBTC eMode6 -> borrow USDT0', solvBtcUser, USDT0, 1e6);
   }
 
   function test_KbtcCannotBorrowThroughIsolatedEModes() public {
@@ -180,10 +187,11 @@ contract InkMarketIsolationUpdate_ForkBehavior_20260622_Test is Test {
     _assertKbtcRouteBlocked(4, USDT0, 1e6);
     _assertKbtcRouteBlocked(5, USDT0, 1e6);
     _assertKbtcRouteBlocked(5, USDG, 1e6);
+    _assertKbtcRouteBlocked(6, GHO, 1 ether);
   }
 
   function test_AllActiveEModesAreIsolated() public view {
-    for (uint8 category = 1; category <= 5; category++) {
+    for (uint8 category = 1; category <= 6; category++) {
       assertTrue(POOL_DATA.getIsEModeCategoryIsolated(category), 'eMode is not isolated');
     }
   }
@@ -201,6 +209,26 @@ contract InkMarketIsolationUpdate_ForkBehavior_20260622_Test is Test {
     _supplyAndSetEmode(stableUser, sUSDe, 10_000 ether, 5);
     assertTrue(_probeBorrow(stableUser, USDT0, 1e6), 'stable eMode cannot borrow USDT0');
     assertTrue(_probeBorrow(stableUser, USDG, 1e6), 'stable eMode cannot borrow USDG');
+
+    address solvBtcUser = makeAddr('asserted-solvbtc');
+    _supplyAndSetEmode(solvBtcUser, SolvBTC, 1 ether, 6);
+    assertTrue(_probeBorrow(solvBtcUser, GHO, 1 ether), 'SolvBTC eMode cannot borrow GHO');
+    assertFalse(_probeBorrow(solvBtcUser, USDC, 1e6), 'SolvBTC eMode can borrow USDC');
+    assertFalse(_probeBorrow(solvBtcUser, USDT0, 1e6), 'SolvBTC eMode can borrow USDT0');
+  }
+
+  function test_SolvBTCGhoEModeConfiguration() public view {
+    (uint16 ltv, uint16 liquidationThreshold, uint16 liquidationBonus) = POOL_DATA
+      .getEModeCategoryCollateralConfig(6);
+
+    assertEq(ltv, 70_00, 'unexpected SolvBTC eMode LTV');
+    assertEq(liquidationThreshold, 72_00, 'unexpected SolvBTC eMode LT');
+    assertEq(liquidationBonus, 107_50, 'unexpected SolvBTC eMode LB');
+    assertEq(POOL_DATA.getEModeCategoryCollateralBitmap(6), 2048, 'unexpected collateral');
+    assertEq(POOL_DATA.getEModeCategoryBorrowableBitmap(6), 16, 'unexpected borrowable');
+    assertEq(POOL_DATA.getEModeCategoryLtvzeroBitmap(6), 0, 'unexpected ltvzero');
+    assertTrue(POOL_DATA.getIsEModeCategoryIsolated(6), 'SolvBTC eMode is not isolated');
+    assertEq(POOL_DATA.getEModeCategoryLabel(6), 'SolvBTC__GHO', 'unexpected label');
   }
 
   function test_CurrentLegacyEModeDistributionAfterPayload() public {

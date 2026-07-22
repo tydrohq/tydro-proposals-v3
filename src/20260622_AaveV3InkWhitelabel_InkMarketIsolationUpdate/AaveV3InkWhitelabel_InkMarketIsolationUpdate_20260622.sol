@@ -217,7 +217,7 @@ contract AaveV3InkWhitelabel_InkMarketIsolationUpdate_20260622 is AaveV3PayloadI
     returns (IAaveV3ConfigEngine.EModeCategoryCreation[] memory)
   {
     IAaveV3ConfigEngine.EModeCategoryCreation[]
-      memory eModeCreations = new IAaveV3ConfigEngine.EModeCategoryCreation[](1);
+      memory eModeCreations = new IAaveV3ConfigEngine.EModeCategoryCreation[](2);
 
     address[] memory collateralAssets_SUSDe_USDe__USDT0_USDG = new address[](2);
     address[] memory borrowableAssets_SUSDe_USDe__USDT0_USDG = new address[](2);
@@ -235,6 +235,22 @@ contract AaveV3InkWhitelabel_InkMarketIsolationUpdate_20260622 is AaveV3PayloadI
       isolated: true,
       collaterals: collateralAssets_SUSDe_USDe__USDT0_USDG,
       borrowables: borrowableAssets_SUSDe_USDe__USDT0_USDG
+    });
+
+    address[] memory collateralAssets_SolvBTC__GHO = new address[](1);
+    address[] memory borrowableAssets_SolvBTC__GHO = new address[](1);
+
+    collateralAssets_SolvBTC__GHO[0] = AaveV3InkWhitelabelAssets.SolvBTC_UNDERLYING;
+    borrowableAssets_SolvBTC__GHO[0] = AaveV3InkWhitelabelAssets.GHO_UNDERLYING;
+
+    eModeCreations[1] = IAaveV3ConfigEngine.EModeCategoryCreation({
+      ltv: 70_00,
+      liqThreshold: 72_00,
+      liqBonus: 7_50,
+      label: 'SolvBTC__GHO',
+      isolated: true,
+      collaterals: collateralAssets_SolvBTC__GHO,
+      borrowables: borrowableAssets_SolvBTC__GHO
     });
 
     return eModeCreations;
