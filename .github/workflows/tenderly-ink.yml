@@ -28,7 +28,6 @@ jobs:
       - uses: actions/checkout@v4
         with:
           submodules: recursive
-          fetch-depth: 0
 
       - name: Run Foundry setup
         uses: bgd-labs/github-workflows/.github/actions/foundry-setup@main
@@ -52,21 +51,24 @@ jobs:
 
       - name: Run Ink proposal tests
         run: |
-          export RPC_INK="$TENDERLY_PUBLIC_RPC_URL_57073"
-          test -n "$RPC_INK"
+          set -euo pipefail
+          export RPC_INK="${TENDERLY_PUBLIC_RPC_URL_57073:?Tenderly Ink RPC URL is missing}"
 
-          if [ -n "${GITHUB_BASE_REF:-}" ]; then
-            mapfile -t tests < <(git diff --name-only "origin/${GITHUB_BASE_REF}"...HEAD -- 'src/**/*.t.sol' | grep 'InkWhitelabel' || true)
-          else
-            mapfile -t tests < <(find src -name '*.t.sol' -path '*InkWhitelabel*' -print)
-          fi
+          test_list="${RUNNER_TEMP}/ink-whitelabel-tests"
+          find src -type f -name '*.t.sol' -path '*InkWhitelabel*' -print0 | LC_ALL=C sort -z > "$test_list"
+          mapfile -d '' -t tests < "$test_list"
 
           if [ "${#tests[@]}" -eq 0 ]; then
-            echo "No Ink Whitelabel test files changed."
-            exit 0
+            echo "::error::No Ink Whitelabel tests found."
+            exit 1
           fi
 
+          status=0
           for test_file in "${tests[@]}"; do
             echo "Running ${test_file}"
-            FOUNDRY_PROFILE=test forge test --match-path "${test_file}" -vvv
+            if ! FOUNDRY_PROFILE="test" forge test --match-path "${test_file}" -vvv; then
+              echo "::error file=${test_file}::Ink Whitelabel test failed."
+              status=1
+            fi
           done
+          exit "$status"
