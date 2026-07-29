@@ -223,7 +223,7 @@ contract InkMarketIsolationUpdate_ForkBehavior_20260622_Test is Test {
 
     assertEq(ltv, 70_00, 'unexpected SolvBTC eMode LTV');
     assertEq(liquidationThreshold, 72_00, 'unexpected SolvBTC eMode LT');
-    assertEq(liquidationBonus, 107_50, 'unexpected SolvBTC eMode LB');
+    assertEq(liquidationBonus, 108_00, 'unexpected SolvBTC eMode LB');
     assertEq(POOL_DATA.getEModeCategoryCollateralBitmap(6), 2048, 'unexpected collateral');
     assertEq(POOL_DATA.getEModeCategoryBorrowableBitmap(6), 16, 'unexpected borrowable');
     assertEq(POOL_DATA.getEModeCategoryLtvzeroBitmap(6), 0, 'unexpected ltvzero');

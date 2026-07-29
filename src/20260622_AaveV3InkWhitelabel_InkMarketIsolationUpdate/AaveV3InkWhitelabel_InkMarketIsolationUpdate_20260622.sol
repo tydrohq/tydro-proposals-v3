@@ -246,7 +246,7 @@ contract AaveV3InkWhitelabel_InkMarketIsolationUpdate_20260622 is AaveV3PayloadI
     eModeCreations[1] = IAaveV3ConfigEngine.EModeCategoryCreation({
       ltv: 70_00,
       liqThreshold: 72_00,
-      liqBonus: 7_50,
+      liqBonus: 8_00,
       label: 'SolvBTC__GHO',
       isolated: true,
       collaterals: collateralAssets_SolvBTC__GHO,

@@ -139,7 +139,7 @@ export const config: ConfigFile = {
           {
             ltv: '70',
             liqThreshold: '72',
-            liqBonus: '7.5',
+            liqBonus: '8',
             label: 'SolvBTC__GHO',
             isolated: 'ENABLED',
             collateralAssets: ['SolvBTC'],
