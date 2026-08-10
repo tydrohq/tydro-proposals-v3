@@ -6,7 +6,7 @@
 
 | description | value before | value after |
 | --- | --- | --- |
-| supplyCap | 36,000 ezETH | 492 ezETH |
+| supplyCap | 36,000 ezETH | 25 ezETH |
 
 
 #### weETH ([0xA3D68b74bF0528fdD07263c60d6488749044914b](https://explorer.inkonchain.com/address/0xA3D68b74bF0528fdD07263c60d6488749044914b))
@@ -22,7 +22,7 @@
 
 | index | event |
 | --- | --- |
-| 0 | SupplyCapChanged(asset: 0x2416092f143378750bb29b79eD961ab195CcEea5 (symbol: ezETH), oldSupplyCap: 36000, newSupplyCap: 492) |
+| 0 | SupplyCapChanged(asset: 0x2416092f143378750bb29b79eD961ab195CcEea5 (symbol: ezETH), oldSupplyCap: 36000, newSupplyCap: 25) |
 | 1 | SupplyCapChanged(asset: 0xA3D68b74bF0528fdD07263c60d6488749044914b (symbol: weETH), oldSupplyCap: 6000, newSupplyCap: 12106) |
 
 #### 0x1dF462e2712496373A347f8ad10802a5E95f053D (AaveV3InkWhitelabel.ACL_ADMIN, GovernanceV3InkWhitelabel.PERMISSIONED_PAYLOADS_CONTROLLER_EXECUTOR)
@@ -51,7 +51,7 @@
 | slot | previous value | new value |
 | --- | --- | --- |
 | 0x52f7f1440ab20fcadde51b79423bd2f17e1c58bc3878efc43624e8de64ae798f | 0x100000000000000000000003e800000177000000000103e881122af8000a0005 | 0x100000000000000000000003e8000002f4a00000000103e881122af8000a0005 |
-| 0x80d3b16018b60b749d2bc1c0b179418bf0067c8de4f67a7e0e09c0f02bf661b2 | 0x100000000000000000000003e8000008ca000000000103e881122af8000a0005 | 0x100000000000000000000003e80000001ec00000000103e881122af8000a0005 |
+| 0x80d3b16018b60b749d2bc1c0b179418bf0067c8de4f67a7e0e09c0f02bf661b2 | 0x100000000000000000000003e8000008ca000000000103e881122af8000a0005 | 0x100000000000000000000003e800000001900000000103e881122af8000a0005 |
 
 
 ## Raw diff
@@ -62,7 +62,7 @@
     "0x2416092f143378750bb29b79eD961ab195CcEea5": {
       "supplyCap": {
         "from": 36000,
-        "to": 492
+        "to": 25
       }
     },
     "0xA3D68b74bF0528fdD07263c60d6488749044914b": {

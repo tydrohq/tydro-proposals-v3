@@ -16,7 +16,7 @@ contract AaveV3InkWhitelabel_UpdateEzETHAndWeETHSupplyCaps_20260804 is AaveV3Pay
 
     capsUpdate[0] = IAaveV3ConfigEngine.CapsUpdate({
       asset: AaveV3InkWhitelabelAssets.ezETH_UNDERLYING,
-      supplyCap: 492,
+      supplyCap: 25,
       borrowCap: EngineFlags.KEEP_CURRENT
     });
     capsUpdate[1] = IAaveV3ConfigEngine.CapsUpdate({
