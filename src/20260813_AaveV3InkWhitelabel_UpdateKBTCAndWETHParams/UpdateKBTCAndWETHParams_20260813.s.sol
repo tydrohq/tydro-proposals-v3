@@ -5,18 +5,18 @@ import {GovV3Helpers, IPayloadsControllerCore} from 'aave-helpers/src/GovV3Helpe
 import {GovernanceV3InkWhitelabel} from 'aave-address-book/GovernanceV3InkWhitelabel.sol';
 
 import {EthereumScript, InkScript} from 'solidity-utils/contracts/utils/ScriptUtils.sol';
-import {AaveV3InkWhitelabel_UpdateKBTCCapRate_20260811} from './AaveV3InkWhitelabel_UpdateKBTCCapRate_20260811.sol';
+import {AaveV3InkWhitelabel_UpdateKBTCAndWETHParams_20260813} from './AaveV3InkWhitelabel_UpdateKBTCAndWETHParams_20260813.sol';
 
 /**
  * @dev Deploy Ink
- * deploy-command: make deploy-ledger contract=src/20260811_AaveV3InkWhitelabel_UpdateKBTCCapRate/UpdateKBTCCapRate_20260811.s.sol:DeployInk chain=ink
- * verify-command: FOUNDRY_PROFILE=deploy npx catapulta-verify -b broadcast/UpdateKBTCCapRate_20260811.s.sol/57073/run-latest.json
+ * deploy-command: make deploy-ledger contract=src/20260813_AaveV3InkWhitelabel_UpdateKBTCAndWETHParams/UpdateKBTCAndWETHParams_20260813.s.sol:DeployInk chain=ink
+ * verify-command: FOUNDRY_PROFILE=deploy npx catapulta-verify -b broadcast/UpdateKBTCAndWETHParams_20260813.s.sol/57073/run-latest.json
  */
 contract DeployInk is InkScript {
   function run() external broadcast {
     // deploy payloads
     address payload0 = GovV3Helpers.deployDeterministic(
-      type(AaveV3InkWhitelabel_UpdateKBTCCapRate_20260811).creationCode
+      type(AaveV3InkWhitelabel_UpdateKBTCAndWETHParams_20260813).creationCode
     );
 
     // compose action
