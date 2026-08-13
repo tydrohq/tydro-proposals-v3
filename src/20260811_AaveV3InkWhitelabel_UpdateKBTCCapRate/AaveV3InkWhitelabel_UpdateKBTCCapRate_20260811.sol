@@ -37,7 +37,7 @@ contract AaveV3InkWhitelabel_UpdateKBTCCapRate_20260811 is AaveV3PayloadInkWhite
     capsUpdate[0] = IAaveV3ConfigEngine.CapsUpdate({
       asset: AaveV3InkWhitelabelAssets.kBTC_UNDERLYING,
       supplyCap: EngineFlags.KEEP_CURRENT,
-      borrowCap: 20
+      borrowCap: 5
     });
 
     return capsUpdate;
