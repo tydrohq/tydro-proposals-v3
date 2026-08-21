@@ -49,9 +49,9 @@ contract AaveV3InkWhitelabel_InkMarketIsolationUpdate_20260622 is AaveV3PayloadI
     });
     collateralUpdate[1] = IAaveV3ConfigEngine.CollateralUpdate({
       asset: AaveV3InkWhitelabelAssets.kBTC_UNDERLYING,
-      ltv: 85_00,
+      ltv: 84_00,
       liqThreshold: 87_00,
-      liqBonus: 5_00,
+      liqBonus: 4_00,
       liqProtocolFee: EngineFlags.KEEP_CURRENT
     });
     collateralUpdate[2] = IAaveV3ConfigEngine.CollateralUpdate({
