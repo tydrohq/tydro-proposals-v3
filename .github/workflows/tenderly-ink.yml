@@ -43,7 +43,7 @@ jobs:
           network_id: |
             57073
           chain_id_prefix: ""
-          block_number: "0x2e6a76e"
+          block_number: "0x336bf35"
           state_sync: false
           public_explorer: false
           verification_visibility: bytecode
