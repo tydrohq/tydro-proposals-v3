@@ -31,6 +31,8 @@ jobs:
 
       - name: Run Foundry setup
         uses: bgd-labs/github-workflows/.github/actions/foundry-setup@main
+        with:
+          FOUNDRY_VERSION: stable
 
       - name: Create Tenderly Ink VNet
         uses: Tenderly/vnet-github-action@v1.0.17
@@ -43,7 +45,7 @@ jobs:
           network_id: |
             57073
           chain_id_prefix: ""
-          block_number: "0x2e6a76e"
+          block_number: "0x33699f0"
           state_sync: false
           public_explorer: false
           verification_visibility: bytecode
