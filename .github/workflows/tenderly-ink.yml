@@ -31,6 +31,8 @@ jobs:
 
       - name: Run Foundry setup
         uses: bgd-labs/github-workflows/.github/actions/foundry-setup@main
+        with:
+          FOUNDRY_VERSION: stable
 
       - name: Create Tenderly Ink VNet
         uses: Tenderly/vnet-github-action@v1.0.17
@@ -43,7 +45,7 @@ jobs:
           network_id: |
             57073
           chain_id_prefix: ""
-          block_number: "0x2b836ca"
+          block_number: "0x33699f0"
           state_sync: false
           public_explorer: false
           verification_visibility: bytecode
@@ -51,9 +53,24 @@ jobs:
 
       - name: Run Ink proposal tests
         run: |
-          export RPC_INK="$TENDERLY_PUBLIC_RPC_URL_57073"
-          test -n "$RPC_INK"
+          set -euo pipefail
+          export RPC_INK="${TENDERLY_PUBLIC_RPC_URL_57073:?Tenderly Ink RPC URL is missing}"
 
-          FOUNDRY_PROFILE=test forge test \
-            --match-path 'src/**/*InkWhitelabel*.t.sol' \
-            -vvv
+          test_list="${RUNNER_TEMP}/ink-whitelabel-tests"
+          find src -type f -name '*.t.sol' -path '*InkWhitelabel*' -print0 | LC_ALL=C sort -z > "$test_list"
+          mapfile -d '' -t tests < "$test_list"
+
+          if [ "${#tests[@]}" -eq 0 ]; then
+            echo "::error::No Ink Whitelabel tests found."
+            exit 1
+          fi
+
+          status=0
+          for test_file in "${tests[@]}"; do
+            echo "Running ${test_file}"
+            if ! FOUNDRY_PROFILE="test" forge test --match-path "${test_file}" -vvv; then
+              echo "::error file=${test_file}::Ink Whitelabel test failed."
+              status=1
+            fi
+          done
+          exit "$status"
