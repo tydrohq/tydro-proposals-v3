@@ -70,4 +70,4 @@ jobs:
         uses: aave-dao/github-workflows/.github/actions/foundry-setup@main
 
       - name: Run tests
-        run: pnpm test
+        run: npm test
