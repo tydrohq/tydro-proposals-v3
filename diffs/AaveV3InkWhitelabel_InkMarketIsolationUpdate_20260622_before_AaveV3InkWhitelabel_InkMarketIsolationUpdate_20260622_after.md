@@ -141,24 +141,24 @@
 | index | event |
 | --- | --- |
 | 0 | EModeCategoryAdded(categoryId: 1, ltv: 9300, liquidationThreshold: 9500, liquidationBonus: 10100, oracle: 0x0000000000000000000000000000000000000000, label: LRT Main) |
-| 1 | topics: `0xea07f8a4f488dcc1dc8c27b9c526ac8ba2d04b8024e206616f306c51d9b16826`, `0x0000000000000000000000000000000000000000000000000000000000000001`, data: `0x0000000000000000000000000000000000000000000000000000000000000001` |
+| 1 | EModeCategoryIsolationChanged(categoryId: 1, isolated: true) |
 | 2 | EModeCategoryAdded(categoryId: 2, ltv: 9000, liquidationThreshold: 9200, liquidationBonus: 10400, oracle: 0x0000000000000000000000000000000000000000, label: sUSDe_USDe__USDT0_USDC_USDG) |
-| 3 | topics: `0xea07f8a4f488dcc1dc8c27b9c526ac8ba2d04b8024e206616f306c51d9b16826`, `0x0000000000000000000000000000000000000000000000000000000000000002`, data: `0x0000000000000000000000000000000000000000000000000000000000000001` |
+| 3 | EModeCategoryIsolationChanged(categoryId: 2, isolated: true) |
 | 4 | EModeCategoryAdded(categoryId: 3, ltv: 9000, liquidationThreshold: 9300, liquidationBonus: 10200, oracle: 0x0000000000000000000000000000000000000000, label: USDe__USDT0_USDC_USDG) |
-| 5 | topics: `0xea07f8a4f488dcc1dc8c27b9c526ac8ba2d04b8024e206616f306c51d9b16826`, `0x0000000000000000000000000000000000000000000000000000000000000003`, data: `0x0000000000000000000000000000000000000000000000000000000000000001` |
+| 5 | EModeCategoryIsolationChanged(categoryId: 3, isolated: true) |
 | 6 | EModeCategoryAdded(categoryId: 4, ltv: 9000, liquidationThreshold: 9200, liquidationBonus: 10400, oracle: 0x0000000000000000000000000000000000000000, label: syrupUSDT__USDT0) |
-| 7 | topics: `0xea07f8a4f488dcc1dc8c27b9c526ac8ba2d04b8024e206616f306c51d9b16826`, `0x0000000000000000000000000000000000000000000000000000000000000004`, data: `0x0000000000000000000000000000000000000000000000000000000000000001` |
-| 8 | topics: `0xc0a450fbad635333e47f3322ec028a8e0b3909f79c721312a356a0fab5fa8b94`, `0x000000000000000000000000211cc4dd073734da055fbf44a2b4667d5e5fe5d2`, data: `0x0000000000000000000000000000000000000000000000000000000000000002...` |
-| 9 | topics: `0xc0a450fbad635333e47f3322ec028a8e0b3909f79c721312a356a0fab5fa8b94`, `0x0000000000000000000000005d3a1ff2b6bab83b63cd9ad0787074081a52ef34`, data: `0x0000000000000000000000000000000000000000000000000000000000000002...` |
-| 10 | topics: `0xc0a450fbad635333e47f3322ec028a8e0b3909f79c721312a356a0fab5fa8b94`, `0x0000000000000000000000005d3a1ff2b6bab83b63cd9ad0787074081a52ef34`, data: `0x0000000000000000000000000000000000000000000000000000000000000003...` |
+| 7 | EModeCategoryIsolationChanged(categoryId: 4, isolated: true) |
+| 8 | AssetLtvzeroInEModeChanged(asset: 0x211Cc4DD073734dA055fbF44a2b4667d5E5fE5d2 (symbol: sUSDe), categoryId: 2, ltvzero: true) |
+| 9 | AssetLtvzeroInEModeChanged(asset: 0x5d3a1Ff2b6BAb83b63cd9AD0787074081a52ef34 (symbol: USDe), categoryId: 2, ltvzero: true) |
+| 10 | AssetLtvzeroInEModeChanged(asset: 0x5d3a1Ff2b6BAb83b63cd9AD0787074081a52ef34 (symbol: USDe), categoryId: 3, ltvzero: true) |
 | 11 | EModeCategoryAdded(categoryId: 5, ltv: 9000, liquidationThreshold: 9200, liquidationBonus: 10400, oracle: 0x0000000000000000000000000000000000000000, label: sUSDe_USDe__USDT0_USDG) |
-| 12 | topics: `0xea07f8a4f488dcc1dc8c27b9c526ac8ba2d04b8024e206616f306c51d9b16826`, `0x0000000000000000000000000000000000000000000000000000000000000005`, data: `0x0000000000000000000000000000000000000000000000000000000000000001` |
+| 12 | EModeCategoryIsolationChanged(categoryId: 5, isolated: true) |
 | 13 | AssetCollateralInEModeChanged(asset: 0x211Cc4DD073734dA055fbF44a2b4667d5E5fE5d2 (symbol: sUSDe), categoryId: 5, collateral: true) |
 | 14 | AssetCollateralInEModeChanged(asset: 0x5d3a1Ff2b6BAb83b63cd9AD0787074081a52ef34 (symbol: USDe), categoryId: 5, collateral: true) |
 | 15 | AssetBorrowableInEModeChanged(asset: 0x0200C29006150606B650577BBE7B6248F58470c1 (symbol: USD₮0), categoryId: 5, borrowable: true) |
 | 16 | AssetBorrowableInEModeChanged(asset: 0xe343167631d89B6Ffc58B88d6b7fB0228795491D (symbol: USDG), categoryId: 5, borrowable: true) |
 | 17 | EModeCategoryAdded(categoryId: 6, ltv: 7000, liquidationThreshold: 7200, liquidationBonus: 10750, oracle: 0x0000000000000000000000000000000000000000, label: SolvBTC__GHO) |
-| 18 | topics: `0xea07f8a4f488dcc1dc8c27b9c526ac8ba2d04b8024e206616f306c51d9b16826`, `0x0000000000000000000000000000000000000000000000000000000000000006`, data: `0x0000000000000000000000000000000000000000000000000000000000000001` |
+| 18 | EModeCategoryIsolationChanged(categoryId: 6, isolated: true) |
 | 19 | AssetCollateralInEModeChanged(asset: 0xaE4EFbc7736f963982aACb17EFA37fCBAb924cB3 (symbol: SolvBTC), categoryId: 6, collateral: true) |
 | 20 | AssetBorrowableInEModeChanged(asset: 0xfc421aD3C883Bf9E7C4f42dE845C4e4405799e73 (symbol: GHO), categoryId: 6, borrowable: true) |
 | 21 | ReserveBorrowing(asset: 0x4200000000000000000000000000000000000006 (symbol: WETH), enabled: false) |
