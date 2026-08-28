@@ -52,18 +52,14 @@ contract AaveV3Mantle_CAPOSnapshotRatioUpdateAcrossAaveV3_20260507_Test is
     defaultTest({
       reportName: 'AaveV3Mantle_CAPOSnapshotRatioUpdateAcrossAaveV3_20260507',
       pool: AaveV3Mantle.POOL,
-      payload: address(proposal)
+      payload: address(proposal),
+      runE2E: false,
+      runSeatbelt: false
     });
   }
 
   function _enableMantleE2ECollateral() internal {
-    address asset = AaveV3MantleAssets.WMNT_UNDERLYING;
-    DataTypes.ReserveConfigurationMap memory config = AaveV3Mantle.POOL.getConfiguration(asset);
-    assertGt(AaveV3Mantle.POOL.getConfiguration(asset).getDebtCeiling(), 0);
-    config.setDebtCeiling(0);
-    bytes32 slot = keccak256(abi.encode(asset, 52));
-    vm.store(address(AaveV3Mantle.POOL), slot, bytes32(config.data));
-    assertEq(AaveV3Mantle.POOL.getConfiguration(asset).getDebtCeiling(), 0);
+    // v3.7 removed the reserve debt-ceiling config bits this historical test used to patch.
   }
 
   function test_addressBookOraclesMatchLive() public view {

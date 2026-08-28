@@ -3,6 +3,7 @@ import {EModeCategoryCreation, EModeCategoryPartial} from './types';
 import {confirm} from '@inquirer/prompts';
 import {stringPrompt} from '../prompts/stringPrompt';
 import {percentPrompt, translateJsPercentToSol} from '../prompts/percentPrompt';
+import {boolPrompt, BooleanSelectValues} from '../prompts/boolPrompt';
 import {
   assetsSelectPrompt,
   getNewListingSymbols,
@@ -12,7 +13,11 @@ import {pascalCase} from '../common';
 
 export async function fetchEmodeCategoryData<T extends boolean>(
   required?: T,
-): Promise<EModeCategoryPartial> {
+): Promise<
+  EModeCategoryPartial & {
+    isolated: T extends true ? Exclude<BooleanSelectValues, 'KEEP_CURRENT'> : BooleanSelectValues;
+  }
+> {
   return {
     ltv: await percentPrompt({
       message: 'ltv',
@@ -28,6 +33,10 @@ export async function fetchEmodeCategoryData<T extends boolean>(
     }),
     label: await stringPrompt({
       message: 'label',
+      required,
+    }),
+    isolated: await boolPrompt({
+      message: 'isolated',
       required,
     }),
   };
@@ -111,6 +120,7 @@ export const eModeCreations: FeatureModule<EmodeCreations> = {
                 liqThreshold: ${translateJsPercentToSol(cfg.liqThreshold)},
                 liqBonus: ${translateJsPercentToSol(cfg.liqBonus)},
                 label: '${cfg.label}',
+                isolated: ${cfg.isolated === 'ENABLED'},
                 collaterals: collateralAssets_${pascalCase(cfg.label)},
                 borrowables: borrowableAssets_${pascalCase(cfg.label)}
               });`,
