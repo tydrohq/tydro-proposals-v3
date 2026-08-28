@@ -24,40 +24,30 @@ contract AaveV3InkWhitelabel_RaiseReserveFactors_20260828 is AaveV3PayloadInkWhi
       asset: AaveV3InkWhitelabelAssets.USDC_UNDERLYING,
       enabledToBorrow: EngineFlags.KEEP_CURRENT,
       flashloanable: EngineFlags.KEEP_CURRENT,
-      borrowableInIsolation: EngineFlags.KEEP_CURRENT,
-      withSiloedBorrowing: EngineFlags.KEEP_CURRENT,
       reserveFactor: 15_00
     });
     borrowUpdates[1] = IAaveV3ConfigEngine.BorrowUpdate({
       asset: AaveV3InkWhitelabelAssets.USDT_UNDERLYING,
       enabledToBorrow: EngineFlags.KEEP_CURRENT,
       flashloanable: EngineFlags.KEEP_CURRENT,
-      borrowableInIsolation: EngineFlags.KEEP_CURRENT,
-      withSiloedBorrowing: EngineFlags.KEEP_CURRENT,
       reserveFactor: 17_50
     });
     borrowUpdates[2] = IAaveV3ConfigEngine.BorrowUpdate({
       asset: AaveV3InkWhitelabelAssets.USDG_UNDERLYING,
       enabledToBorrow: EngineFlags.KEEP_CURRENT,
       flashloanable: EngineFlags.KEEP_CURRENT,
-      borrowableInIsolation: EngineFlags.KEEP_CURRENT,
-      withSiloedBorrowing: EngineFlags.KEEP_CURRENT,
       reserveFactor: 15_00
     });
     borrowUpdates[3] = IAaveV3ConfigEngine.BorrowUpdate({
       asset: AaveV3InkWhitelabelAssets.GHO_UNDERLYING,
       enabledToBorrow: EngineFlags.KEEP_CURRENT,
       flashloanable: EngineFlags.KEEP_CURRENT,
-      borrowableInIsolation: EngineFlags.KEEP_CURRENT,
-      withSiloedBorrowing: EngineFlags.KEEP_CURRENT,
       reserveFactor: 15_00
     });
     borrowUpdates[4] = IAaveV3ConfigEngine.BorrowUpdate({
       asset: AaveV3InkWhitelabelAssets.WETH_UNDERLYING,
       enabledToBorrow: EngineFlags.KEEP_CURRENT,
       flashloanable: EngineFlags.KEEP_CURRENT,
-      borrowableInIsolation: EngineFlags.KEEP_CURRENT,
-      withSiloedBorrowing: EngineFlags.KEEP_CURRENT,
       reserveFactor: 17_50
     });
 

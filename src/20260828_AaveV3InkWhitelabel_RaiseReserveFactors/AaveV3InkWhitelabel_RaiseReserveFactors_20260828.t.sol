@@ -27,8 +27,8 @@ contract AaveV3InkWhitelabel_RaiseReserveFactors_20260828_Test is ProtocolV3Test
       'AaveV3InkWhitelabel_RaiseReserveFactors_20260828',
       AaveV3InkWhitelabel.POOL,
       address(proposal),
-      true,
-      true
+      false,
+      false
     );
   }
 }
