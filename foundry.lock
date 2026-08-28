@@ -1,8 +1,11 @@
 {
+  "lib/aave-capo": {
+    "rev": "85e6ca0298ed32b2d564eac1ad1e084f7573173a"
+  },
   "lib/aave-helpers": {
     "branch": {
       "name": "main",
-      "rev": "22fa4c82d9ca6deb461307d7787e12075405d969"
+      "rev": "ae8ae2308670cf74e84ca0e17264d0b05f8833b2"
     }
   },
   "lib/aave-umbrella": {
