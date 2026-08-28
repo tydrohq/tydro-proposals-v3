@@ -30,9 +30,7 @@ jobs:
           submodules: recursive
 
       - name: Run Foundry setup
-        uses: bgd-labs/github-workflows/.github/actions/foundry-setup@main
-        with:
-          FOUNDRY_VERSION: stable
+        uses: aave-dao/github-workflows/.github/actions/foundry-setup@main
 
       - name: Create Tenderly Ink VNet
         uses: Tenderly/vnet-github-action@v1.0.17
