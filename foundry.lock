@@ -1,4 +1,7 @@
 {
+  "lib/aave-capo": {
+    "rev": "85e6ca0298ed32b2d564eac1ad1e084f7573173a"
+  },
   "lib/aave-helpers": {
     "branch": {
       "name": "main",
